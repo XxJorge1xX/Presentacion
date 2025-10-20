@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ciberseguridad en Panamá</title>
+  <link rel="icon" href="Imagenes/pirata-informatico.png" type="image/png">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    h1, h2, h3, h4 {
+      color: #00FFFF;
+      margin-bottom: 1rem;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin: 2rem 0;
+      border-bottom: 2px solid #00FFFF;
+      padding-bottom: 1rem;
+    }
+    
+    h2 {
+      font-size: 1.8rem;
+      margin-top: 2rem;
+      border-left: 5px solid #00FFFF;
+      padding-left: 15px;
+    }
+    
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 1.5rem;
+    }
+    
+    h4 {
+      font-size: 1.2rem;
+      color: #00FFFF;
+    }
+    
+    .section {
+      margin-bottom: 2.5rem;
+      background-color: #111;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 255, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #333;
+    }
+    
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 255, 255, 0.2);
+    }
+    
+    li {
+      text-align: justify;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      text-align: justify;
+      color: #ddd;
+    }
+    
+    ul, ol {
+      margin-left: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      box-shadow: 0 2px 4px rgba(0, 255, 255, 0.1);
+    }
+    
+    table, th, td {
+      border: 1px solid #333;
+    }
+    
+    th {
+      background-color: #00FFFF;
+      color: #000;
+      font-weight: bold;
+      padding: 12px;
+      text-align: center;
+    }
+    
+    td {
+      padding: 10px;
+      text-align: center;
+      color: #fff;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #222;
+    }
+    
+    tr:hover {
+      background-color: rgba(0, 255, 255, 0.1);
+    }
+    
+    .bibliography {
+      font-size: 0.9rem;
+      background-color: #151515;
+    }
+    
+    .nav {
+      background-color: #000;
+      box-shadow: 0 2px 20px rgba(0, 255, 255, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #00FFFF;
+    }
+
+    .nav__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .nav__item {
+      position: relative;
+    }
+
+    .nav__link {
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+      padding: 15px 30px;
+      transition: all 0.3s;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .nav__link:hover {
+      color: #00FFFF;
+      background-color: rgba(0, 255, 255, 0.1);
+    }
+
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #00FFFF;
+      transition: all 0.3s;
+      transform: translateX(-50%);
+    }
+
+    .nav__link:hover::after {
+      width: 70%;
+    }
+    
+    strong {
+      color: #00FFFF;
+    }
+    
+    /* Botones de scroll */
+    .scroll-btn {
+      position: fixed;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgba(0, 255, 255, 0.7);
+      color: #000;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: all 0.3s ease;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0, 255, 255, 0.5);
+    }
+    
+    .scroll-btn:hover {
+      background-color: #00FFFF;
+      transform: scale(1.1);
+    }
+    
+    .scroll-up {
+      bottom: 100px;
+    }
+    
+    .scroll-down {
+      bottom: 30px;
+    }
+    
+    .scroll-btn.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 15px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .section {
+        padding: 1.5rem;
+      }
+      
+      .nav__list {
+        flex-direction: column;
+      }
+      
+      .nav__item {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .nav__link:hover::after {
+        width: 30%;
+      }
+      
+      table {
+        font-size: 0.9rem;
+      }
+      
+      .scroll-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        right: 15px;
+      }
+      
+      .scroll-up {
+        bottom: 90px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <ul class="nav__list">
+      <li class="nav__item"><a href="index.html" class="nav__link">Inicio</a></li>
+      <li class="nav__item"><a href="hoja-de-vida.html" class="nav__link">Currículum</a></li>
+      <li class="nav__item"><a href="investigacion.html" class="nav__link">Investigación</a></li>
+      <li class="nav__item"><a href="glosario.html" class="nav__link">Glosario</a></li>
+    </ul>
+  </nav>
+  
+  <div class="container">
+    <h1>Ciberseguridad en Panamá</h1>
+
+    <div class="section">
+      <h2>Autores</h2>
+      <p>
+        <strong>Investigador:</strong> Jore González<br>
+        <strong>Institución:</strong> Universidad de Panamá<br>
+        <strong>Año:</strong> 2025
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Introducción</h2>
+      <p>En la actualidad, la transformación digital ha permeado todos los aspectos de la vida cotidiana: desde el comercio electrónico y la banca digital hasta la educación virtual y los trámites gubernamentales. Este crecimiento acelerado de las tecnologías de la información y comunicación (TIC) ha traído consigo una mayor exposición a riesgos cibernéticos, especialmente en países en desarrollo como Panamá.</p>
+      <p>La ciberseguridad ya no es un tema exclusivo del sector tecnológico, sino una prioridad nacional que requiere la coordinación de múltiples actores estatales, privados y civiles. Esta investigación analiza el ecosistema institucional y legal de Panamá en materia de ciberseguridad, identifica los incidentes cibernéticos más reportados entre 2020 y 2024, y propone recomendaciones para una mejor gestión de riesgos cibernéticos.</p>
+    </div>
+
+    <div class="section">
+      <h2>Metodología</h2>
+      <p>Esta investigación se desarrolló bajo un enfoque cualitativo-descriptivo, basado principalmente en análisis documental. Se emplearon las siguientes fuentes:</p>
+      <ul>
+        <li>Legislación nacional vigente en materia de delitos informáticos y protección de datos.</li>
+        <li>Tratados y convenios internacionales ratificados por Panamá.</li>
+        <li>Informes anuales publicados por el CSIRT Panamá, con datos estadísticos entre 2020 y 2024.</li>
+        <li>Artículos académicos y fuentes secundarias confiables sobre gobernanza digital y estrategias nacionales de ciberseguridad.</li>
+      </ul>
+      <p>Los datos fueron organizados en matrices comparativas y tablas estadísticas para detectar tendencias, identificar brechas y facilitar el análisis visual.</p>
+    </div>
+
+    <div class="section">
+      <h2>Resultados</h2>
+      <p>Durante los últimos años, los incidentes de ciberseguridad han evolucionado tanto en su frecuencia como en su complejidad. Una de las amenazas más destacadas ha sido el <strong>phishing</strong>, una técnica que ha mostrado un patrón de crecimiento acelerado seguido por una caída progresiva. Este comportamiento sugiere que, aunque fue una amenaza dominante durante un tiempo, los esfuerzos de concienciación, la implementación de filtros más avanzados y las campañas educativas han logrado mitigar su impacto en parte.</p>
+      
+      <p>Al mismo tiempo, otros tipos de incidentes como el <strong>fraude digital</strong> y el uso de <strong>malware</strong> han crecido en visibilidad, a menudo aprovechándose del aumento de la digitalización de servicios bancarios, compras en línea y operaciones remotas. En particular, el fraude ha ido adoptando nuevas formas que hacen más difícil su detección con técnicas tradicionales, lo que obliga a los sistemas a adaptarse rápidamente.</p>
+      
+      <p>Las <strong>botnets</strong> han perdido algo de terreno, probablemente por el fortalecimiento en las defensas de red y la mejora en las capacidades de detección por parte de proveedores de internet y empresas especializadas en ciberseguridad. Sin embargo, esto no implica que hayan desaparecido, sino que han cambiado su forma de operar, muchas veces funcionando de forma más encubierta o integrándose en redes más complejas.</p>
+      
+      <p>Otro punto crítico es el aumento en los <strong>compromisos de aplicaciones y servicios web</strong>, donde los atacantes aprovechan errores de programación, configuraciones incorrectas o vulnerabilidades conocidas que no han sido corregidas. Esto refuerza la necesidad de aplicar buenas prácticas de desarrollo seguro y mantener procesos de actualización constantes.</p>
+      
+      <p>Por su parte, la <strong>explotación de vulnerabilidades</strong> sigue siendo una estrategia efectiva para los atacantes, sobre todo cuando las organizaciones no priorizan la gestión de parches y actualizaciones. En este contexto, también es común la <strong>divulgación no autorizada de información sensible</strong>, lo cual puede tener consecuencias legales y reputacionales importantes.</p>
+      
+      <p>A pesar de que algunos vectores de ataque como la <strong>suplantación de identidad</strong>, el <strong>ransomware</strong> o los <strong>troyanos</strong> no aparecen con tanta frecuencia en ciertos periodos, su impacto es considerable cuando se presentan, especialmente en entornos corporativos, gubernamentales o sanitarios. Por ello, no deben ser subestimados.</p>
+      
+      <p>Finalmente, categorías como los <strong>ataques por fuerza bruta</strong>, la <strong>inyección de código</strong>, el <strong>defacement de sitios web</strong> y el <strong>acceso no autorizado a información</strong> reflejan que los atacantes siguen utilizando técnicas clásicas que, si bien pueden parecer básicas, siguen siendo efectivas contra sistemas mal configurados o poco vigilados.</p>
+      
+      <p>El panorama de ciberseguridad sigue siendo muy dinámico. A medida que las amenazas evolucionan, también deben hacerlo las estrategias de protección. Es fundamental mantener una mentalidad de mejora continua, capacitación constante del personal, inversión en tecnología de defensa y respuesta rápida ante incidentes para mitigar daños y proteger los activos digitales.</p>
+      
+      <h3>Entidades Relevantes</h3>
+      <ul>
+        <li><strong>Fiscalía Especializada en Delitos Informáticos:</strong> Encargada de investigar delitos como extorsión, estafa, robo de datos personales, etc.</li>
+        <li><strong>CSIRT-Panamá:</strong> Previene y responde a incidentes de seguridad digital desde 2011.</li>
+        <li><strong>Policía Nacional:</strong> Cuenta con la DIJ y una unidad especializada en delitos informáticos.</li>
+      </ul>
+      
+      <h3>Leyes Clave</h3>
+      <ul>
+        <li>Código Penal: Regula delitos informáticos (Artículos 289-292).</li>
+        <li>Ley 81: Protección de Datos Personales.</li>
+        <li>Ley 15: Derechos de Autor.</li>
+        <li>Ley 51: Comercio Electrónico y Firma Digital.</li>
+      </ul>
+      
+      <h3>Estrategias</h3>
+      <ul>
+        <li><strong>Estrategia Nacional de Ciberseguridad (2013):</strong> Poca implementación por falta de voluntad política.</li>
+        <li><strong>Convenio de Budapest (2014):</strong> Panamá es el segundo país latinoamericano en ratificarlo.</li>
+      </ul>
+      
+      <h3>Estadísticas de Incidentes (CSIRT-Panamá 2020–2024)</h3>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Año</th>
+              <th>2020</th>
+              <th>2021</th>
+              <th>2022</th>
+              <th>2023</th>
+              <th>2024</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Phishing</td><td>419.12</td><td>1017.451</td><td>2256.832</td><td>1147.9186</td><td>548.416</td></tr>
+            <tr><td>Fraude</td><td></td><td></td><td>845.13</td><td>1207.8906</td><td>292.576</td></tr>
+            <tr><td>Malware</td><td></td><td>1.427</td><td>53.978</td><td>115.0372</td><td>230.912</td></tr>
+            <tr><td>Botnet</td><td>91.76</td><td>156.97</td><td>154.054</td><td>85.0512</td><td>64.288</td></tr>
+            <tr><td>Compromiso de aplicaciones</td><td>11.78</td><td>82.766</td><td>133.96</td><td>35.9832</td><td>51.168</td></tr>
+            <tr><td>Explotación de vulnerabilidades</td><td>1.86</td><td>25.686</td><td>1.182</td><td>4.9068</td><td>30.176</td></tr>
+            <tr><td>Divulgación de información sensitiva</td><td>1.24</td><td>1.427</td><td>1.97</td><td></td><td>28.864</td></tr>
+            <tr><td>Otros</td><td>24.18</td><td>44.237</td><td>39.006</td><td>31.0764</td><td>18.368</td></tr>
+            <tr><td>Defacement</td><td></td><td></td><td>1.182</td><td>7.9054</td><td>17.056</td></tr>
+            <tr><td>Correo no deseado</td><td>6.2</td><td>45.664</td><td></td><td>7.9054</td><td>15.744</td></tr>
+            <tr><td>Suplantación de identidad</td><td>1.86</td><td>15.697</td><td>395.97</td><td>2.9986</td><td>2.624</td></tr>
+            <tr><td>Troyanos</td><td>1.24</td><td>1.427</td><td></td><td>37.0736</td><td>2.624</td></tr>
+            <tr><td>Derechos de autor</td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Otro tipo de inyección</td><td></td><td>2.854</td><td></td><td>1.0904</td><td>2.624</td></tr>
+            <tr><td>Acceso no autorizado</td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Denegación de servicio (DoS)</td><td>4.96</td><td>1.427</td><td>3.152</td><td>10.904</td><td>1.312</td></tr>
+            <tr><td>Inyección SQL</td><td>11.16</td><td>2.854</td><td>7.092</td><td>2.9986</td><td>1.312</td></tr>
+            <tr><td>Desfiguración de sitios web</td><td>31</td><td>14.27</td><td>18.124</td><td>1.0904</td><td></td></tr>
+            <tr><td>Ataque de fuerza bruta</td><td>3.72</td><td>1.427</td><td>3.94</td><td>7.0876</td><td></td></tr>
+            <tr><td>Publicación no autorizada de contenido</td><td>3.1</td><td>1.427</td><td>9.85</td><td>4.089</td><td></td></tr>
+            <tr><td>Monitoreo y captura de tráfico</td><td>1.86</td><td>1.427</td><td>5.122</td><td>7.9054</td><td></td></tr>
+            <tr><td>Afectación a los derechos de autor</td><td>1.86</td><td>2.854</td><td>3.152</td><td></td><td>2.624</td></tr>
+            <tr><td>Compromiso de cuentas no privilegiadas</td><td>1.24</td><td>1.427</td><td>3.152</td><td>1.9082</td><td></td></tr>
+            <tr><td>Compromiso de cuentas privilegiadas</td><td>1.24</td><td>1.427</td><td></td><td></td><td></td></tr>
+            <tr><td>Acceso no autorizado a la información</td><td>1.24</td><td></td><td>1.182</td><td>1.0904</td><td>1.312</td></tr>
+            <tr><td>Ransomware</td><td></td><td>1.427</td><td>1.97</td><td>1.0904</td><td></td></tr>
+            <tr><td>Desfiguración masiva de sitios web</td><td></td><td>1.427</td><td></td><td></td><td></td></tr>
+            <tr><td>Denegación de servicio distribuido</td><td></td><td>1.427</td><td></td><td>1.0904</td><td></td></tr>
+            <tr><td>Cross-Site Scripting</td><td></td><td>1.427</td><td></td><td></td><td></td></tr>
+            <tr><td>Barridos de puertos</td><td></td><td></td><td>1.182</td><td></td><td></td></tr>
+            <tr><td>Inyección de ficheros de forma remota</td><td></td><td></td><td></td><td>1.9082</td><td></td></tr>
+            <tr><td><strong>Total</strong></td><td><strong>620.62</strong></td><td><strong>1429.854</strong></td><td><strong>3941.182</strong></td><td><strong>2726</strong></td><td><strong>1312</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <h3>Los 5 Principales Incidentes y Cómo Prevenirlos</h3>
+      <ol>
+        <li>
+          <h4><strong>Phishing</strong></h4>
+          <p>Técnica de engaño mediante correos, mensajes o sitios falsos que imitan servicios legítimos para robar credenciales, información financiera o personal.</p>
+          <p><strong>Prevención:</strong></p>
+          <ul>
+            <li>No hacer clic en enlaces sospechosos o desconocidos.</li>
+            <li>Verificar siempre la dirección del remitente y la URL del sitio.</li>
+            <li>Activar la autenticación multifactor (MFA).</li>
+            <li>Participar en programas de concientización y capacitación.</li>
+          </ul>
+        </li>
+        
+        <li>
+          <h4><strong>Fraude Cibernético</strong></h4>
+          <p>Uso de engaños digitales para obtener beneficios financieros, incluyendo falsas tiendas en línea, estafas con premios, suplantación de perfiles y manipulación de pagos.</p>
+          <p><strong>Prevención:</strong></p>
+          <ul>
+            <li>Realizar compras solo en sitios seguros (https).</li>
+            <li>Verificar la identidad de quien solicita dinero o información.</li>
+            <li>No compartir datos financieros por canales no verificados.</li>
+            <li>Monitorear regularmente los estados de cuenta.</li>
+          </ul>
+        </li>
+        
+        <li>
+          <h4><strong>Malware</strong></h4>
+          <p>Software malicioso que infecta dispositivos con el fin de robar información, dañar archivos o tomar el control del sistema.</p>
+          <p><strong>Prevención:</strong></p>
+          <ul>
+            <li>Mantener el sistema operativo y antivirus actualizados.</li>
+            <li>No descargar software de fuentes no oficiales.</li>
+            <li>Hacer copias de seguridad regularmente.</li>
+          </ul>
+        </li>
+        
+        <li>
+          <h4><strong>Suplantación de Identidad (Impersonation)</strong></h4>
+          <p>Uso no autorizado del nombre, imagen o credenciales de una persona o entidad para engañar a terceros y cometer fraudes o manipular decisiones.</p>
+          <p><strong>Prevención:</strong></p>
+          <ul>
+            <li>Configurar perfiles privados en redes sociales.</li>
+            <li>No compartir demasiada información personal en línea.</li>
+            <li>Verificar siempre la identidad del remitente o contacto.</li>
+            <li>Reportar inmediatamente casos sospechosos a las autoridades.</li>
+          </ul>
+        </li>
+        
+        <li>
+          <h4><strong>Ataques de Ingeniería Social</strong></h4>
+          <p>Manipulación psicológica para convencer a una persona de entregar información confidencial o realizar acciones que comprometan la seguridad.</p>
+          <p><strong>Prevención:</strong></p>
+          <ul>
+            <li>Desconfiar de solicitudes urgentes o inusuales, incluso si vienen de contactos conocidos.</li>
+            <li>Capacitar al personal sobre cómo reconocer técnicas comunes (como el pretexto o el baiting).</li>
+            <li>Verificar siempre por otro canal la autenticidad de una solicitud.</li>
+            <li>Mantener actualizadas las políticas de seguridad internas.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h2>Conclusiones</h2>
+      <p>Panamá ha avanzado considerablemente en el diseño institucional y legal de su ecosistema de ciberseguridad, alineándose con estándares internacionales. Sin embargo, los datos demuestran que los incidentes como phishing, fraude y malware siguen afectando a miles de usuarios cada año, lo que evidencia que la prevención y educación digital deben intensificarse.</p>
+      <p>Es crucial garantizar la implementación efectiva de la Estrategia Nacional de Ciberseguridad, fortalecer la coordinación entre entidades estatales y privadas, e impulsar campañas de educación digital tanto en entornos escolares como laborales. Solo con una ciudadanía informada y protegida se podrá consolidar un entorno cibernético seguro y resiliente en Panamá.</p>
+    </div>
+
+    <div class="section bibliography">
+      <h2>Bibliografía</h2>
+      <ul>
+        <li>Estadísticas 2024 - CSIRT Panamá</li>
+        <li>Legislación panameña vigente (Código Penal, Ley 81, Ley 15, Ley 51)</li>
+        <li>Convenio de Budapest sobre Ciberdelincuencia</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Botones de scroll -->
+  <button class="scroll-btn scroll-up hidden" title="Ir arriba">↑</button>
+  <button class="scroll-btn scroll-down" title="Ir abajo">↓</button>
+
+  <script>
+    // Funcionalidad de los botones de scroll
+    const scrollUpBtn = document.querySelector('.scroll-up');
+    const scrollDownBtn = document.querySelector('.scroll-down');
+    
+    // Función para mostrar/ocultar botones según la posición del scroll
+    function toggleScrollButtons() {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Mostrar u ocultar botón de subir
+      if (scrollPosition > 100) {
+        scrollUpBtn.classList.remove('hidden');
+      } else {
+        scrollUpBtn.classList.add('hidden');
+      }
+      
+      // Mostrar u ocultar botón de bajar
+      if (scrollPosition + windowHeight < documentHeight - 100) {
+        scrollDownBtn.classList.remove('hidden');
+      } else {
+        scrollDownBtn.classList.add('hidden');
+      }
+    }
+    
+    // Evento scroll
+    window.addEventListener('scroll', toggleScrollButtons);
+    
+    // Evento para botón de subir
+    scrollUpBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Evento para botón de bajar
+    scrollDownBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Verificar estado inicial al cargar la página
+    toggleScrollButtons();
+  </script>
+</body>
+</html>

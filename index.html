@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorge González</title>
+    <link rel="icon" href="Imagenes/pirata-informatico.png" type="image/png">
+    <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .nav {
+      background-color: #000;
+      box-shadow: 0 2px 20px rgba(0, 255, 255, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #00FFFF;
+    }
+
+    .nav__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .nav__item {
+      position: relative;
+    }
+
+    .nav__link {
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+      padding: 15px 30px;
+      transition: all 0.3s;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .nav__link:hover {
+      color: #00FFFF;
+      background-color: rgba(0, 255, 255, 0.1);
+    }
+
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #00FFFF;
+      transition: all 0.3s;
+      transform: translateX(-50%);
+    }
+
+    .nav__link:hover::after {
+      width: 70%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      min-height: 70vh;
+    }
+
+    .profile-container {
+      flex: 0 0 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-img {
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid #00FFFF;
+      box-shadow: 0 6px 30px rgba(0, 255, 255, 0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 40px rgba(0, 255, 255, 0.6);
+    }
+
+    .intro {
+      flex: 1;
+      padding: 30px;
+      text-align: justify;
+    }
+
+    h1 {
+      color: #00FFFF;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      line-height: 1.3;
+      text-align: left;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background-color: #00FFFF;
+      border-radius: 2px;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1.15rem;
+      color: #fff;
+      text-align: left;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Botones de scroll */
+    .scroll-btn {
+      position: fixed;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgba(0, 255, 255, 0.7);
+      color: #000;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: all 0.3s ease;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0, 255, 255, 0.5);
+    }
+    
+    .scroll-btn:hover {
+      background-color: #00FFFF;
+      transform: scale(1.1);
+    }
+    
+    .scroll-up {
+      bottom: 100px;
+    }
+    
+    .scroll-down {
+      bottom: 30px;
+    }
+    
+    .scroll-btn.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    @media (max-width: 1100px) {
+      .container {
+        gap: 50px;
+        padding: 0 30px;
+      }
+      
+      .profile-img {
+        width: 340px;
+        height: 340px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+        margin: 2rem auto;
+      }
+      
+      .profile-container {
+        flex: 0 0 auto;
+      }
+      
+      .profile-img {
+        width: 300px;
+        height: 300px;
+      }
+      
+      h1 {
+        text-align: center;
+        font-size: 2.3rem;
+      }
+      
+      h1::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      .intro {
+        padding: 20px;
+        text-align: center;
+      }
+      
+      p {
+        text-align: center;
+      }
+      
+      .scroll-btn {
+        right: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+      
+      .profile-img {
+        width: 260px;
+        height: 260px;
+        border-width: 4px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      p {
+        font-size: 1.1rem;
+      }
+      
+      .nav__item {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .nav__link {
+        padding: 12px;
+      }
+      
+      .nav__link:hover::after {
+        width: 30%;
+      }
+      
+      .scroll-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        right: 15px;
+      }
+      
+      .scroll-up {
+        bottom: 90px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      p {
+        font-size: 1rem;
+        text-align: left;
+      }
+      
+      .profile-img {
+        width: 220px;
+        height: 220px;
+      }
+      
+      .nav__link {
+        font-size: 1rem;
+        padding: 10px;
+      }
+    }
+    </style>
+</head>
+<body> 
+    <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="index.html" class="nav__link">Inicio</a></li>
+          <li class="nav__item"><a href="hoja-de-vida.html" class="nav__link">Currículum</a></li>
+          <li class="nav__item"><a href="investigacion.html" class="nav__link">Investigación</a></li>
+          <li class="nav__item"><a href="glosario.html" class="nav__link">Glosario</a></li>
+        </ul>
+      </nav>
+      
+      <div class="container">
+        <div class="profile-container">
+          <img src="Imagenes/Jorge.jpg" alt="Foto de Jorge González" class="profile-img">
+        </div>
+        <div class="intro">
+          <h1>Hola, Soy Jorge González, estudio la Licenciatura de Ingeniería en Informática.</h1>
+          <p>
+            Desde pequeño me ha interesado el funcionamiento de los sistemas y la tecnología, lo que me motivó a elegir esta carrera. Me gusta resolver problemas, aprender sobre nuevas herramientas digitales y entender cómo la informática puede mejorar la vida de las personas y los procesos en las empresas.
+          </p>
+          <p>
+            Actualmente me encuentro en una etapa de constante aprendizaje, tanto en lo académico como en lo personal. Me esfuerzo por desarrollar habilidades técnicas como la programación, la ciberseguridad y la gestión de proyectos, pero también valoro mucho el trabajo en equipo y la comunicación.
+          </p>
+          <p>
+            En mi tiempo libre, disfruto actividades que me ayudan a mantenerme activo y despejar la mente. Me gusta ir al parque, caminar al aire libre y entrenar en el gimnasio. Estas actividades me permiten equilibrar el estudio con el bienestar físico y emocional.
+          </p>
+          <p>
+            Estoy entusiasmado por seguir creciendo en este camino, enfrentar nuevos desafíos y aprovechar cada oportunidad que se presente para mejorar como persona y futuro profesional.
+          </p>
+        </div>
+      </div>
+
+      <!-- Botones de scroll -->
+      <button class="scroll-btn scroll-up hidden" title="Ir arriba">↑</button>
+      <button class="scroll-btn scroll-down" title="Ir abajo">↓</button>
+
+      <script>
+        // Funcionalidad de los botones de scroll
+        const scrollUpBtn = document.querySelector('.scroll-up');
+        const scrollDownBtn = document.querySelector('.scroll-down');
+        
+        // Función para mostrar/ocultar botones según la posición del scroll
+        function toggleScrollButtons() {
+          const scrollPosition = window.scrollY;
+          const windowHeight = window.innerHeight;
+          const documentHeight = document.documentElement.scrollHeight;
+          
+          // Mostrar u ocultar botón de subir
+          if (scrollPosition > 100) {
+            scrollUpBtn.classList.remove('hidden');
+          } else {
+            scrollUpBtn.classList.add('hidden');
+          }
+          
+          // Mostrar u ocultar botón de bajar
+          if (scrollPosition + windowHeight < documentHeight - 100) {
+            scrollDownBtn.classList.remove('hidden');
+          } else {
+            scrollDownBtn.classList.add('hidden');
+          }
+        }
+        
+        // Evento scroll
+        window.addEventListener('scroll', toggleScrollButtons);
+        
+        // Evento para botón de subir
+        scrollUpBtn.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+        
+        // Evento para botón de bajar
+        scrollDownBtn.addEventListener('click', () => {
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: 'smooth'
+          });
+        });
+        
+        // Verificar estado inicial al cargar la página
+        toggleScrollButtons();
+      </script>
+</body>
+</html>

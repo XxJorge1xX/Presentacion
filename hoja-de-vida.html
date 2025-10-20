@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>CV Jorge Aarón González Morales</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="Imagenes/pirata-informatico.png" type="image/png">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    /* Barra de navegación mejorada */
+    .nav {
+      background-color: #000;
+      box-shadow: 0 2px 20px rgba(0, 255, 255, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #00FFFF;
+    }
+
+    .nav__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .nav__item {
+      position: relative;
+    }
+
+    .nav__link {
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+      padding: 15px 30px;
+      transition: all 0.3s;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .nav__link:hover {
+      color: #00FFFF;
+      background-color: rgba(0, 255, 255, 0.1);
+    }
+
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #00FFFF;
+      transition: all 0.3s;
+      transform: translateX(-50%);
+    }
+
+    .nav__link:hover::after {
+      width: 70%;
+    }
+
+    /* Contenedor del CV */
+    .cv-container {
+      width: 800px;
+      margin: 30px auto;
+      background: #111;
+      padding-bottom: 40px;
+      border: 1px solid #00FFFF;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cv-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+    }
+
+    .cv-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent 65%, rgba(0, 255, 255, 0.05) 100%);
+      pointer-events: none;
+    }
+
+    .header {
+      background: #222;
+      padding: 40px 30px 30px;
+      text-align: center;
+      border-bottom: 2px solid #00FFFF;
+      position: relative;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #00FFFF;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+      transition: all 0.3s;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+    }
+
+    .header h1 {
+      margin: 10px 0 5px;
+      font-size: 28px;
+      color: #00FFFF;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .header em {
+      color: #aaa;
+      font-style: italic;
+    }
+
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .left-column {
+      background: #151515;
+      padding: 30px;
+      width: 35%;
+      color: #ddd;
+      border-right: 1px solid #333;
+    }
+
+    .right-column {
+      padding: 30px;
+      width: 65%;
+      background: #111;
+    }
+
+    h3 {
+      color: #00FFFF;
+      margin-top: 25px;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: #00FFFF;
+    }
+
+    ul {
+      padding-left: 20px;
+      list-style-type: none;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+      padding-left: 0;
+    }
+
+    .section-title {
+      font-weight: bold;
+      margin-top: 25px;
+      color: #00FFFF;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-item {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-item::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #00FFFF;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+
+    .info {
+      margin-top: 10px;
+      color: #bbb;
+    }
+
+    em {
+      font-style: italic;
+      color: #bbb;
+    }
+
+    .highlight {
+      color: #00FFFF;
+      font-weight: bold;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: #ddd;
+    }
+
+    /* Botones de scroll */
+    .scroll-btn {
+      position: fixed;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgba(0, 255, 255, 0.7);
+      color: #000;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: all 0.3s ease;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0, 255, 255, 0.5);
+    }
+    
+    .scroll-btn:hover {
+      background-color: #00FFFF;
+      transform: scale(1.1);
+    }
+    
+    .scroll-up {
+      bottom: 100px;
+    }
+    
+    .scroll-down {
+      bottom: 30px;
+    }
+    
+    .scroll-btn.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+      .cv-container {
+        width: 95%;
+        margin: 20px auto;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .main-content {
+        flex-direction: column;
+      }
+      
+      .left-column, .right-column {
+        width: 100%;
+      }
+      
+      .left-column {
+        border-right: none;
+        border-bottom: 1px solid #333;
+      }
+      
+      .nav__link {
+        padding: 12px 15px;
+        font-size: 1rem;
+      }
+      
+      .scroll-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        right: 15px;
+      }
+      
+      .scroll-up {
+        bottom: 90px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 24px;
+      }
+      
+      .header {
+        padding: 30px 20px;
+      }
+      
+      .left-column, .right-column {
+        padding: 20px;
+      }
+      
+      .nav__item {
+        width: 50%;
+        text-align: center;
+      }
+      
+      .nav__link:hover::after {
+        width: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de navegación mejorada -->
+  <nav class="nav">
+    <ul class="nav__list">
+      <li class="nav__item"><a href="index.html" class="nav__link">Inicio</a></li>
+      <li class="nav__item"><a href="hoja-de-vida.html" class="nav__link">Currículum</a></li>
+      <li class="nav__item"><a href="investigacion.html" class="nav__link">Investigación</a></li>
+      <li class="nav__item"><a href="glosario.html" class="nav__link">Glosario</a></li>
+    </ul>
+  </nav>
+
+  <!-- Contenido del CV -->
+  <div class="cv-container">
+    <div class="header">
+      <img src="Imagenes/Jorge.jpg" alt="Foto de Jorge González" class="profile-img">
+      <h1>JORGE AARÓN GONZÁLEZ MORALES</h1>
+      <em>Estudiante de Ingeniería en Informática</em>
+    </div>
+
+    <div class="main-content">
+      <div class="left-column">
+        <h3>SOBRE MÍ</h3>
+        <p>Estudiante de Ingeniería en Informática. Ordenado, puntual y enfocado en objetivos. Destaco por mi organización y eficiencia. Sociable y colaborativo. Busco oportunidades para aplicar mis habilidades y crecer profesionalmente.</p>
+
+        <h3>CONTACTO</h3>
+        <div class="contact-item">📞 800-0000</div>
+        <div class="contact-item">📧 correo_prueba@hotmail.com</div>
+        <div class="contact-item">📍 Ciudad de Panamá</div>
+
+        <h3>INFORMACIÓN PERSONAL</h3>
+        <div class="info">Cédula: 8-000-000</div>
+        <div class="info">Fecha de nacimiento: 19 de octubre del 1996</div>
+      </div>
+
+      <div class="right-column">
+        <h3 class="section-title">ESTUDIOS</h3>
+        <p><span class="highlight">UNIVERSIDAD DE PANAMÁ</span><br>2024 - Actualidad.<br><em>Lic. de Ingeniería en Informática</em></p>
+
+        <p><span class="highlight">UNIVERSIDAD INTERAMERICANA DE PANAMÁ</span><br>2018 - 2019<br><em>Lic. en Administración Marítima y Portuaria</em></p>
+
+        <p><span class="highlight">C. B. LABORAL SAN MIGUELITO</span><br>2015 - 2017<br><em>Bachiller en Ciencias</em></p>
+
+        <h3 class="section-title">EXPERIENCIA LABORAL</h3>
+        <ul>
+          <li><em>Granjero</em></li>
+          <li><em>Freelancer</em></li>
+          <li><em>Chofer</em></li>
+        </ul>
+
+        <h3 class="section-title">HABILIDADES</h3>
+        <ul>
+          <li>Licencia tipo D</li>
+          <li>Microsoft Office (Word, PowerPoint, Excel)</li>
+          <li><em>Trabajo en equipo</em></li>
+          <li>Inglés básico</li>
+          <li><em>Habilidades informáticas</em></li>
+          <li><em>Comunicación efectiva</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones de scroll -->
+  <button class="scroll-btn scroll-up hidden" title="Ir arriba">↑</button>
+  <button class="scroll-btn scroll-down" title="Ir abajo">↓</button>
+
+  <script>
+    // Funcionalidad de los botones de scroll
+    const scrollUpBtn = document.querySelector('.scroll-up');
+    const scrollDownBtn = document.querySelector('.scroll-down');
+    
+    // Función para mostrar/ocultar botones según la posición del scroll
+    function toggleScrollButtons() {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Mostrar u ocultar botón de subir
+      if (scrollPosition > 100) {
+        scrollUpBtn.classList.remove('hidden');
+      } else {
+        scrollUpBtn.classList.add('hidden');
+      }
+      
+      // Mostrar u ocultar botón de bajar
+      if (scrollPosition + windowHeight < documentHeight - 100) {
+        scrollDownBtn.classList.remove('hidden');
+      } else {
+        scrollDownBtn.classList.add('hidden');
+      }
+    }
+    
+    // Evento scroll
+    window.addEventListener('scroll', toggleScrollButtons);
+    
+    // Evento para botón de subir
+    scrollUpBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Evento para botón de bajar
+    scrollDownBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Verificar estado inicial al cargar la página
+    toggleScrollButtons();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glosario Web 2.0</title>
+    <link rel="icon" href="Imagenes/pirata-informatico.png" type="image/png">
+    <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .nav {
+      background-color: #000;
+      box-shadow: 0 2px 20px rgba(0, 255, 255, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #00FFFF;
+    }
+
+    .nav__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .nav__item {
+      position: relative;
+    }
+
+    .nav__link {
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+      padding: 15px 30px;
+      transition: all 0.3s;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .nav__link:hover {
+      color: #00FFFF;
+      background-color: rgba(0, 255, 255, 0.1);
+    }
+
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #00FFFF;
+      transition: all 0.3s;
+      transform: translateX(-50%);
+    }
+
+    .nav__link:hover::after {
+      width: 70%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 2rem 0;
+      color: #00FFFF;
+      font-size: 2.5rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: #00FFFF;
+    }
+
+    .emoji {
+      font-size: 1.2em;
+    }
+
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .glossary-item {
+      background: #111;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 255, 255, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid #333;
+    }
+
+    .glossary-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 255, 255, 0.2);
+    }
+
+    .glossary-content {
+      padding: 20px;
+    }
+
+    h2 {
+      color: #00FFFF;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: #00FFFF;
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: #ddd;
+    }
+
+    u {
+      color: #00FFFF;
+      font-weight: bold;
+    }
+
+    .glossary-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid #333;
+      transition: transform 0.3s;
+    }
+
+    .glossary-item:hover .glossary-img {
+      transform: scale(1.02);
+    }
+
+    /* Botones de scroll */
+    .scroll-btn {
+      position: fixed;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgba(0, 255, 255, 0.7);
+      color: #000;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: all 0.3s ease;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0, 255, 255, 0.5);
+    }
+    
+    .scroll-btn:hover {
+      background-color: #00FFFF;
+      transform: scale(1.1);
+    }
+    
+    .scroll-up {
+      bottom: 100px;
+    }
+    
+    .scroll-down {
+      bottom: 30px;
+    }
+    
+    .scroll-btn.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .glossary-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav__item {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .nav__link:hover::after {
+        width: 30%;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .nav__link {
+        padding: 12px 15px;
+        font-size: 1rem;
+      }
+      
+      .scroll-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        right: 15px;
+      }
+      
+      .scroll-up {
+        bottom: 90px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      h2 {
+        font-size: 1.3rem;
+      }
+      
+      .glossary-content {
+        padding: 15px;
+      }
+    }
+    </style>
+</head>
+<body> 
+    <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="index.html" class="nav__link">Inicio</a></li>
+          <li class="nav__item"><a href="hoja-de-vida.html" class="nav__link">Currículum</a></li>
+          <li class="nav__item"><a href="investigacion.html" class="nav__link">Investigación</a></li>
+          <li class="nav__item"><a href="glosario.html" class="nav__link">Glosario</a></li>
+        </ul>
+      </nav>
+    
+    <div class="container">
+        <h1><span class="emoji">🌐</span> Glosario Web 2.0</h1>
+        
+        <div class="glossary-grid">
+            <!-- Blog -->
+            <div class="glossary-item">
+                <img src="Imagenes/Blog.jpg" alt="Imagen de blog" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">📓</span> Blog</h2>
+                    <p>Un sitio web donde una persona o grupo publica contenido regularmente en forma de artículos o entradas. Suelen ser cronológicos y pueden incluir texto, imágenes, videos y enlaces.</p>
+                    <p><u>Ejemplo:</u> WordPress, Blogger</p>
+                </div>
+            </div>
+            
+            <!-- Red Social -->
+            <div class="glossary-item">
+                <img src="Imagenes/Red Social.jpg" alt="Imagen de red social" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🧑‍🤝‍🧑</span> Red Social</h2>
+                    <p>Plataforma que permite a los usuarios conectarse, compartir contenido y comunicarse entre sí.</p>
+                    <p><u>Ejemplo:</u> Facebook, Instagram, TikTok, LinkedIn.</p>
+                </div>
+            </div>
+            
+            <!-- Wiki -->
+            <div class="glossary-item">
+                <img src="Imagenes/Wiki.jpg" alt="Imagen de wiki" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">📚</span> Wiki</h2>
+                    <p>Sitio web colaborativo que puede ser editado por múltiples usuarios, facilitando la creación colectiva de conocimiento.</p>
+                    <p><u>Ejemplo:</u> Wikipedia.</p>
+                </div>
+            </div>
+            
+            <!-- RSS -->
+            <div class="glossary-item">
+                <img src="Imagenes/RSS (Really Simple Syndication).jpg" alt="Imagen de RSS" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">📰</span> RSS (Really Simple Syndication)</h2>
+                    <p>Formato que permite a los usuarios recibir actualizaciones automáticas de sus sitios web favoritos.</p>
+                    <p><u>Ejemplo:</u> Feedly, Inoreader.</p>
+                </div>
+            </div>
+            
+            <!-- Vlog -->
+            <div class="glossary-item">
+                <img src="Imagenes/Vlog.jpg" alt="Imagen de vlog" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🎥</span> Vlog</h2>
+                    <p>Versión en video de un blog. Son publicaciones en formato de video, comúnmente subidas a YouTube u otras plataformas.</p>
+                    <p><u>Ejemplo:</u> Canales de YouTube de estilo personal.</p>
+                </div>
+            </div>
+            
+            <!-- Microblogging -->
+            <div class="glossary-item">
+                <img src="Imagenes/Microblogging.jpg" alt="Imagen de microblogging" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">💬</span> Microblogging</h2>
+                    <p>Forma abreviada de blogging en la que los usuarios publican contenido breve.</p>
+                    <p><u>Ejemplo:</u> Twitter, Threads.</p>
+                </div>
+            </div>
+            
+            <!-- Compartición de Contenido Multimedia -->
+            <div class="glossary-item">
+                <img src="Imagenes/Compartición de Contenido Multimedia.jpg" alt="Imagen de compartición de contenido multimedia" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">📸</span> Compartición de Contenido Multimedia</h2>
+                    <p>Servicios que permiten subir y compartir fotos, videos y música con otros usuarios.</p>
+                    <p><u>Ejemplo:</u> Instagram, YouTube, SoundCloud.</p>
+                </div>
+            </div>
+            
+            <!-- Comunidades Virtuales -->
+            <div class="glossary-item">
+                <img src="Imagenes/Comunidades Virtuales.jpg" alt="Imagen de comunidades virtuales" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">👥</span> Comunidades Virtuales</h2>
+                    <p>Grupos de personas que interactúan a través de Internet con intereses comunes.</p>
+                    <p><u>Ejemplo:</u> Reddit, foros temáticos, Discord.</p>
+                </div>
+            </div>
+            
+            <!-- Servicios en la Nube -->
+            <div class="glossary-item">
+                <img src="Imagenes/Servicios en la Nube.jpg" alt="Imagen de servicios en la nube" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">☁️</span> Servicios en la Nube</h2>
+                    <p>Plataformas que almacenan y gestionan datos en servidores remotos accesibles por Internet.</p>
+                    <p><u>Ejemplo:</u> Google Drive, Dropbox.</p>
+                </div>
+            </div>
+            
+            <!-- Mashup -->
+            <div class="glossary-item">
+                <img src="Imagenes/Mashup.jpg" alt="Imagen de mashup" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🧩</span> Mashup</h2>
+                    <p>Aplicación web que combina datos o funcionalidades de diferentes fuentes para crear un nuevo servicio.</p>
+                    <p><u>Ejemplo:</u> Mapas interactivos que combinan datos de Google Maps con precios de viviendas.</p>
+                </div>
+            </div>
+            
+            <!-- Crowdsourcing -->
+            <div class="glossary-item">
+                <img src="Imagenes/Crowdsourcing.jpg" alt="Imagen de crowdsourcing" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🗳️</span> Crowdsourcing</h2>
+                    <p>Proceso de obtener ideas, servicios o contenido mediante la colaboración de una comunidad online.</p>
+                    <p><u>Ejemplo:</u> Wikipedia, Waze, Kickstarter.</p>
+                </div>
+            </div>
+            
+            <!-- Aplicaciones Web Interactivas -->
+            <div class="glossary-item">
+                <img src="Imagenes/Aplicaciones Web Interactivas.jpg" alt="Imagen de aplicaciones web interactivas" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🛠️</span> Aplicaciones Web Interactivas</h2>
+                    <p>Sitios web que responden dinámicamente a las acciones del usuario, mejorando la experiencia de uso.</p>
+                    <p><u>Ejemplo:</u> Google Docs, Canva, Trello.</p>
+                </div>
+            </div>
+            
+            <!-- Gamificación -->
+            <div class="glossary-item">
+                <img src="Imagenes/Gamificación.jpg" alt="Imagen de gamificación" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🎮</span> Gamificación</h2>
+                    <p>Uso de elementos de juego (puntos, niveles, logros) en contextos no lúdicos como educación o marketing.</p>
+                    <p><u>Ejemplo:</u> Duolingo, Khan Academy.</p>
+                </div>
+            </div>
+            
+            <!-- Inteligencia Colectiva -->
+            <div class="glossary-item">
+                <img src="Imagenes/Inteligencia Colectiva.jpg" alt="Imagen de inteligencia colectiva" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🧠</span> Inteligencia Colectiva</h2>
+                    <p>Conocimiento generado por la colaboración y participación masiva de personas en línea.</p>
+                    <p><u>Ejemplo:</u> Foros, encuestas colaborativas, hackathons.</p>
+                </div>
+            </div>
+            
+            <!-- Marcadores Sociales -->
+            <div class="glossary-item">
+                <img src="Imagenes/Marcadores Sociales.jpg" alt="Imagen de marcadores sociales" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">📂</span> Marcadores Sociales</h2>
+                    <p>Herramientas que permiten guardar, organizar y compartir enlaces de interés en línea.</p>
+                    <p><u>Ejemplo:</u> Pocket, Diigo, Pinterest.</p>
+                </div>
+            </div>
+            
+            <!-- Podcast -->
+            <div class="glossary-item">
+                <img src="Imagenes/Podcast.jpg" alt="Imagen de podcast" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🎙️</span> Podcast</h2>
+                    <p>Archivo de audio digital que los usuarios pueden descargar o escuchar en línea, normalmente en formato de serie.</p>
+                    <p><u>Ejemplo:</u> Spotify Podcasts, Apple Podcasts.</p>
+                </div>
+            </div>
+            
+            <!-- CMS -->
+            <div class="glossary-item">
+                <img src="Imagenes/CMS (Content Management System).jpg" alt="Imagen de CMS" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">💻</span> CMS (Content Management System)</h2>
+                    <p>Sistema que permite crear y administrar contenido digital fácilmente sin conocimientos técnicos avanzados.</p>
+                    <p><u>Ejemplo:</u> WordPress, Joomla, Drupal.</p>
+                </div>
+            </div>
+            
+            <!-- Análisis Web -->
+            <div class="glossary-item">
+                <img src="Imagenes/Análisis Web.jpg" alt="Imagen de análisis web" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">📊</span> Análisis Web</h2>
+                    <p>Medición, recopilación y análisis de datos web para entender el comportamiento de los usuarios.</p>
+                    <p><u>Ejemplo:</u> Google Analytics, Matomo.</p>
+                </div>
+            </div>
+            
+            <!-- Tagging -->
+            <div class="glossary-item">
+                <img src="Imagenes/Tagging (Etiquetado).jpg" alt="Imagen de tagging" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🧮</span> Tagging (Etiquetado)</h2>
+                    <p>Proceso de asignar palabras clave a contenido para organizarlo y facilitar su búsqueda.</p>
+                    <p><u>Ejemplo:</u> Hashtags en Instagram o etiquetas en blogs.</p>
+                </div>
+            </div>
+            
+            <!-- Widgets -->
+            <div class="glossary-item">
+                <img src="Imagenes/Widgets.JPG" alt="Imagen de widgets" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🧩</span> Widgets</h2>
+                    <p>Pequeños módulos o aplicaciones que ofrecen funciones específicas y se pueden incrustar en sitios web.</p>
+                    <p><u>Ejemplo:</u> Relojes, calendarios, reproductores de música.</p>
+                </div>
+            </div>
+            
+            <!-- Prosumer -->
+            <div class="glossary-item">
+                <img src="Imagenes/Prosumer (Productor + Consumidor).jpg" alt="Imagen de prosumer" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🧑‍💼</span> Prosumer (Productor + Consumidor)</h2>
+                    <p>Usuario que no solo consume contenido, sino que también lo crea y lo comparte.</p>
+                    <p><u>Ejemplo:</u> Personas que suben videos a YouTube, escriben blogs o hacen reseñas en Amazon.</p>
+                </div>
+            </div>
+            
+            <!-- Interoperabilidad -->
+            <div class="glossary-item">
+                <img src="Imagenes/Interoperabilidad.jpg" alt="Imagen de interoperabilidad" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🔗</span> Interoperabilidad</h2>
+                    <p>Capacidad de diferentes plataformas y aplicaciones para trabajar juntas e intercambiar datos.</p>
+                    <p><u>Ejemplo:</u> Iniciar sesión en sitios usando tu cuenta de Google o Facebook.</p>
+                </div>
+            </div>
+            
+            <!-- Freemium -->
+            <div class="glossary-item">
+                <img src="Imagenes/Freemium.jpg" alt="Imagen de freemium" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">💼</span> Freemium</h2>
+                    <p>Modelo de negocio donde el producto básico es gratuito, pero se cobran funciones avanzadas.</p>
+                    <p><u>Ejemplo:</u> Spotify, Canva, Notion.</p>
+                </div>
+            </div>
+            
+            <!-- Privacidad de Datos -->
+            <div class="glossary-item">
+                <img src="Imagenes/Privacidad de Datos.jpg" alt="Imagen de privacidad de datos" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🔒</span> Privacidad de Datos</h2>
+                    <p>Control sobre cómo se recopila, usa y comparte la información personal de los usuarios.</p>
+                    <p><u>Ejemplo:</u> Configuración de privacidad en redes sociales.</p>
+                </div>
+            </div>
+            
+            <!-- APIs -->
+            <div class="glossary-item">
+                <img src="Imagenes/APIs (Application Programming Interfaces).jpg" alt="Imagen de APIs" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">📡</span> APIs (Application Programming Interfaces)</h2>
+                    <p>Conjuntos de reglas que permiten que diferentes aplicaciones se comuniquen entre sí.</p>
+                    <p><u>Ejemplo:</u> API de Google Maps, API de Twitter.</p>
+                </div>
+            </div>
+            
+            <!-- Folksonomía -->
+            <div class="glossary-item">
+                <img src="Imagenes/Folksonomía.jpg" alt="Imagen de folksonomía" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🕸️</span> Folksonomía</h2>
+                    <p>Organización colaborativa del contenido mediante etiquetas generadas por los usuarios.</p>
+                    <p><u>Ejemplo:</u> Etiquetas en Flickr o Delicious.</p>
+                </div>
+            </div>
+            
+            <!-- SaaS -->
+            <div class="glossary-item">
+                <img src="Imagenes/Software como Servicio (SaaS).jpg" alt="Imagen de software como servicio" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🧰</span> Software como Servicio (SaaS)</h2>
+                    <p>Modelo de distribución de software en el que las aplicaciones se ofrecen a través de Internet como un servicio.</p>
+                    <p><u>Ejemplo:</u> Gmail, Dropbox, Salesforce.</p>
+                </div>
+            </div>
+            
+            <!-- Viralización -->
+            <div class="glossary-item">
+                <img src="Imagenes/Viralización.jpg" alt="Imagen de viralización" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">📢</span> Viralización</h2>
+                    <p>Proceso por el cual un contenido se difunde rápidamente a través de internet, especialmente en redes sociales.</p>
+                    <p><u>Ejemplo:</u> Videos virales en TikTok, memes compartidos en masa.</p>
+                </div>
+            </div>
+            
+            <!-- UGC -->
+            <div class="glossary-item">
+                <img src="Imagenes/Contenido Generado por el Usuario (UGC).jpg" alt="Imagen de contenido generado por el usuario" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🎨</span> Contenido Generado por el Usuario (UGC)</h2>
+                    <p>Contenido creado y compartido por los propios usuarios en lugar de por empresas o marcas.</p>
+                    <p><u>Ejemplo:</u> Reseñas en Amazon, fotos en Instagram, videos en YouTube.</p>
+                </div>
+            </div>
+            
+            <!-- Comercio Social -->
+            <div class="glossary-item">
+                <img src="Imagenes/Comercio Social.jpg" alt="Imagen de comercio social" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🛒</span> Comercio Social</h2>
+                    <p>Uso de redes sociales para facilitar la compra y venta de productos o servicios.</p>
+                    <p><u>Ejemplo:</u> Tiendas en Instagram, Facebook Marketplace.</p>
+                </div>
+            </div>
+            
+            <!-- Plataforma Móvil -->
+            <div class="glossary-item">
+                <img src="Imagenes/Plataforma Móvil.jpg" alt="Imagen de plataforma móvil" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">📱</span> Plataforma Móvil</h2>
+                    <p>Aplicaciones y servicios diseñados específicamente para usarse en dispositivos móviles como teléfonos y tabletas.</p>
+                    <p><u>Ejemplo:</u> TikTok, WhatsApp, Instagram.</p>
+                </div>
+            </div>
+            
+            <!-- Notificaciones Push -->
+            <div class="glossary-item">
+                <img src="Imagenes/Notificaciones Push.jpg" alt="Imagen de notificaciones push" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🛎️</span> Notificaciones Push</h2>
+                    <p>Mensajes emergentes enviados por una app o sitio web para mantener informado al usuario en tiempo real.</p>
+                    <p><u>Ejemplo:</u> Alertas de nuevos mensajes en Instagram o comentarios en YouTube.</p>
+                </div>
+            </div>
+            
+            <!-- Colaboración en Línea -->
+            <div class="glossary-item">
+                <img src="Imagenes/Colaboración en Línea.jpg" alt="Imagen de colaboración en línea" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">💡</span> Colaboración en Línea</h2>
+                    <p>Trabajo conjunto entre personas mediante herramientas digitales sin importar su ubicación geográfica.</p>
+                    <p><u>Ejemplo:</u> Google Docs, Miro, Trello.</p>
+                </div>
+            </div>
+            
+            <!-- Actualizaciones en Tiempo Real -->
+            <div class="glossary-item">
+                <img src="Imagenes/Actualizaciones en Tiempo Real.jpg" alt="Imagen de actualizaciones en tiempo real" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🔁</span> Actualizaciones en Tiempo Real</h2>
+                    <p>Cambios o nuevos datos que se muestran al usuario de inmediato sin necesidad de recargar la página.</p>
+                    <p><u>Ejemplo:</u> Comentarios en vivo, chats en tiempo real, streams.</p>
+                </div>
+            </div>
+            
+            <!-- Geolocalización -->
+            <div class="glossary-item">
+                <img src="Imagenes/Geolocalización.jpg" alt="Imagen de geolocalización" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🌎</span> Geolocalización</h2>
+                    <p>Tecnología que permite identificar la ubicación física de un dispositivo conectado a internet.</p>
+                    <p><u>Ejemplo:</u> Google Maps, filtros de ubicación en redes sociales.</p>
+                </div>
+            </div>
+            
+            <!-- Identidad Digital -->
+            <div class="glossary-item">
+                <img src="Imagenes/Identidad Digital.jpg" alt="Imagen de identidad digital" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🛡️</span> Identidad Digital</h2>
+                    <p>Conjunto de datos e información que representa a una persona o entidad en línea.</p>
+                    <p><u>Ejemplo:</u> Perfil de usuario, avatar, correo electrónico asociado.</p>
+                </div>
+            </div>
+            
+            <!-- RIAs -->
+            <div class="glossary-item">
+                <img src="Imagenes/Interfaces Ricas de Usuario (RIAs).jpg" alt="Imagen de interfaces ricas de usuario" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">💻</span> Interfaces Ricas de Usuario (RIAs)</h2>
+                    <p>Aplicaciones web que ofrecen una experiencia interactiva y visualmente atractiva similar a una aplicación de escritorio.</p>
+                    <p><u>Ejemplo:</u> Canva, Figma, Prezi.</p>
+                </div>
+            </div>
+            
+            <!-- Memes -->
+            <div class="glossary-item">
+                <img src="Imagenes/Memes.jpg" alt="Imagen de memes" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">👾</span> Memes</h2>
+                    <p>Imágenes, frases o videos humorísticos que se comparten y adaptan masivamente en internet.</p>
+                    <p><u>Ejemplo:</u> Memes de gatitos, formatos virales de texto.</p>
+                </div>
+            </div>
+            
+            <!-- Personalización de Contenido -->
+            <div class="glossary-item">
+                <img src="Imagenes/Personalización de Contenido.jpg" alt="Imagen de personalización de contenido" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🛠️</span> Personalización de Contenido</h2>
+                    <p>Capacidad de adaptar el contenido que ve el usuario según sus gustos, historial o comportamiento.</p>
+                    <p><u>Ejemplo:</u> Recomendaciones de Netflix, TikTok For You.</p>
+                </div>
+            </div>
+            
+            <!-- Machine Learning -->
+            <div class="glossary-item">
+                <img src="Imagenes/Machine Learning en Web 2.0.jpg" alt="Imagen de machine learning en web 2.0" class="glossary-img">
+                <div class="glossary-content">
+                    <h2><span class="emoji">🧠</span> Machine Learning en Web 2.0</h2>
+                    <p>Uso de algoritmos que aprenden del comportamiento del usuario para ofrecer experiencias más inteligentes y personalizadas.</p>
+                    <p><u>Ejemplo:</u> Algoritmos de recomendación en Spotify o YouTube.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botones de scroll -->
+    <button class="scroll-btn scroll-up hidden" title="Ir arriba">↑</button>
+    <button class="scroll-btn scroll-down" title="Ir abajo">↓</button>
+
+    <script>
+        // Funcionalidad de los botones de scroll
+        const scrollUpBtn = document.querySelector('.scroll-up');
+        const scrollDownBtn = document.querySelector('.scroll-down');
+        
+        // Función para mostrar/ocultar botones según la posición del scroll
+        function toggleScrollButtons() {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            // Mostrar u ocultar botón de subir
+            if (scrollPosition > 100) {
+                scrollUpBtn.classList.remove('hidden');
+            } else {
+                scrollUpBtn.classList.add('hidden');
+            }
+            
+            // Mostrar u ocultar botón de bajar
+            if (scrollPosition + windowHeight < documentHeight - 100) {
+                scrollDownBtn.classList.remove('hidden');
+            } else {
+                scrollDownBtn.classList.add('hidden');
+            }
+        }
+        
+        // Evento scroll
+        window.addEventListener('scroll', toggleScrollButtons);
+        
+        // Evento para botón de subir
+        scrollUpBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Evento para botón de bajar
+        scrollDownBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: document.documentElement.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Verificar estado inicial al cargar la página
+        toggleScrollButtons();
+    </script>
+</body>
+</html>
