@@ -1,29 +1,40 @@
-# Presentación
+# 🌟 Presentación
 
-Repositorio con una presentación web diseñada para mostrar proyectos, ideas y demostraciones técnicas de forma visual y accesible. La estructura del sitio está pensada para resaltar contenidos clave (proyectos, capturas, descripciones y demos) de forma clara y profesional.
+Repositorio con una presentación web diseñada para mostrar proyectos, ideas y demos técnicas de forma visual, clara y accesible. Perfecto para crear un portafolio interactivo o enseñar conceptos con ejemplos prácticos.
 
-Contiene archivos HTML, CSS y JavaScript, junto con recursos multimedia que puedes personalizar y desplegar fácilmente. Ideal para compartir tu portafolio, explicar conceptos con ejemplos interactivos o mostrar demos técnicas.
+Contiene archivos HTML, CSS y JavaScript, además de recursos multimedia personalizables (imágenes, videos e íconos). Listo para desplegar en hostings estáticos como GitHub Pages.  
 
-## Navbar (barra de navegación)
+---
 
-La página incluye un navbar moderno y funcional que facilita la navegación por la presentación. Características principales:
+## ✨ Qué incluye
+- 🧩 Estructura modular (secciones reutilizables)
+- 🎨 Estilos CSS limpios y personalizables
+- ⚡ JavaScript para interactividad ligera
+- 🖼️ Carpeta de recursos (imágenes, íconos, multimedia)
 
-- Diseño responsivo: se adapta automáticamente a pantallas de escritorio, tablet y móvil. En dispositivos pequeños el navbar se colapsa en un botón tipo "hamburguesa".
-- Sticky / fija: el navbar se mantiene visible en la parte superior mientras el usuario hace scroll, permitiendo un acceso rápido a las secciones principales.
-- Enlaces con scroll suave: al hacer clic en un enlace del navbar, la página hace un desplazamiento suave hasta la sección correspondiente, mejorando la experiencia de lectura.
-- Indicador de sección activa: el enlace correspondiente a la sección visible se resalta (clase activa), para que el usuario siempre sepa dónde se encuentra dentro de la presentación.
-- CTA y elementos destacados: incluye un botón de llamada a la acción (por ejemplo, "Contacto" o "Ver demo") que puede destacarse con color o borde.
-- Accesibilidad: marcado ARIA básico, foco visible y soporte para navegación por teclado para mejorar la usabilidad a usuarios con discapacidades.
-- Personalización sencilla: colores, tipografías y orden de enlaces se controlan desde el archivo CSS y el HTML del encabezado; el comportamiento (por ejemplo, el colapso móvil o el scroll suave) se puede ajustar desde el script JS correspondiente.
-- Soporte para iconos y logos: espacio para logo a la izquierda y opción de añadir iconos a los enlaces para mayor claridad visual.
-- Opcional: toggle de modo oscuro/claro (se puede añadir fácilmente) y menús desplegables para secciones con subítems.
+---
 
-### Dónde modificarlo
-- HTML: edita la estructura del navbar en index.html (o el archivo header.html si la plantilla está fragmentada).
-- CSS: personaliza colores, espaciado y tipografías en css/navbar.css o en el archivo principal de estilos.
-- JS: ajusta el comportamiento (colapso, scroll suave, activación de clases) en js/navbar.js o en el script principal.
+## 🧭 Navbar (barra de navegación)
+La página cuenta con un navbar moderno y funcional pensado para mejorar la experiencia de usuario:
 
-### Recomendaciones rápidas
-- Mantén los enlaces del navbar claros y concisos (Inicio, Proyectos, Sobre mí, Contacto).
-- Usa un CTA visible para dirigir a la acción principal (ver demo, descargar CV, contactar).
-- Verifica la accesibilidad con teclado y lector de pantalla tras cualquier cambio.
+- 📱 Diseño responsivo: se adapta a escritorio, tablet y móvil (menu "hamburguesa" en pantallas pequeñas).  
+- 📌 Sticky: permanece fijo en la parte superior al hacer scroll para acceso rápido.  
+- 🧭 Scroll suave: los enlaces llevan a las secciones con desplazamiento fluido.  
+- 🔍 Indicador de sección activa: resalta la sección visible para orientarte en la presentación.  
+- 🎯 CTA destacado: botón visible para acciones clave (ej. "Ver demo", "Contacto").  
+- ♿ Accesibilidad: soporte ARIA básico, foco visible y navegación por teclado.  
+- 🎛️ Personalizable: colores, tipografías y orden de enlaces desde HTML/CSS; comportamiento ajustable en JS.  
+- 🖼️ Soporte de logo e íconos: espacio para marca e íconos en los enlaces.  
+- 🌗 Opcional: fácil de añadir toggle modo oscuro/claro o submenús desplegables.
+
+Dónde editar:
+- 📝 HTML: estructura del navbar (index.html o header fragment).  
+- 🎨 CSS: estilos y theme (css/navbar.css o styles.css).  
+- ⚙️ JS: comportamiento (colapso, scroll suave, clases activas) en js/navbar.js o scripts principales.
+
+---
+
+## ✅ Recomendaciones rápidas
+- Mantén los enlaces claros: Inicio, Proyectos, Sobre mí, Contacto.  
+- Usa un CTA llamativo para dirigir la acción principal.  
+- Prueba navegación por teclado y contraste de colores para accesibilidad.
